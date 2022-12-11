@@ -2,7 +2,8 @@
 // this file were genereted by coderdbc.com web service
 // any questions - mailto:coderdbc@gmail.com
 
-#include "candata.h"
+#include "candata.h""
+#include "can_wrap.h"
 
 // --------------------------------------------------------------------------
 uint32_t Unpack_MOTOR_CURRENT_candata(MOTOR_CURRENT_t* _m, const uint8_t* _d, uint8_t dlc_)
@@ -88,5 +89,27 @@ uint32_t Pack_VCU_BATTERY_candata(const VCU_BATTERY_t* _m, uint8_t* _d, uint8_t*
   _d[1] |= ((_m->VOLTAGE >> 8) & (0xFFU));
   *_len = 2; *_ide = 0;
   return VCU_BATTERY_CANID;
+}
+
+int main( int argc, char* argv[] )
+{
+    const char* canChannel = "vcan0";
+    const int canSocket = can_connect( canChannel, false );
+
+    for( int c=0; c<100; ++c )
+    {
+        struct can_frame frame;
+        if( can_read( canSocket, &frame ) )
+        {
+            printf("0x%X [%X]", frame.can_id, frame.can_dlc );
+            for( int i=0; i<frame.can_dlc; ++i )
+                printf( " %02X", frame.data[i] );
+            printf("\n");
+        }
+    }
+
+	can_close( canSocket );
+
+	return 0;
 }
 
