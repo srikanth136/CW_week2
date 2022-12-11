@@ -90,7 +90,7 @@ typedef struct
   uint16_t FL_WHEEL_SPEED;                  //      Bits=16.  [ 0     , 65535  ]  Unit:'rpm'   Factor= 0.1   
 
   uint16_t FR_WHEEL_SPEED;                  //      Bits=16.  [ 0     , 65535  ]  Unit:'rpm'   Factor= 0.1   
-
+  
   uint16_t RL_WHEEL_SPEED;                  //      Bits=16.  [ 0     , 65535  ]  Unit:'rpm'   Factor= 0.1   
 
   uint16_t RR_WHEEL_SPEED;                  //      Bits=16.  [ 0     , 65535  ]  Unit:'rpm'   Factor= 0.1   
